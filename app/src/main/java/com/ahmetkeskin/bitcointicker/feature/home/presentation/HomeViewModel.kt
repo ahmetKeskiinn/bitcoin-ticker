@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val weather: GetCryptos,
+    private val getCryptos: GetCryptos
 ) : BaseViewModel() {
-    fun getWeather() = weather.execute(this, Unit)
+    fun getCrypto() = getCryptos.execute(this, Unit)
 }
