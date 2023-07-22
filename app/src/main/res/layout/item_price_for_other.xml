@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="6dp"
+    android:background="@null"
+    android:padding="16dp"
+    app:cardCornerRadius="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="6dp"
+        android:background="@drawable/bg_item_price_for_other">
+
+        <ImageView
+            android:id="@+id/currentImage"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="12dp"
+            app:layout_constraintBottom_toBottomOf="@id/currentCurrencyOne"
+            app:layout_constraintStart_toEndOf="@id/currentCurrencyOne"
+            app:layout_constraintTop_toTopOf="@id/currentCurrencyOne" />
+
+        <TextView
+            android:id="@+id/currentCurrencyOne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginStart="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/equals"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:text="="
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/currentCurrencyOne"
+            app:layout_constraintStart_toEndOf="@id/currentImage"
+            app:layout_constraintTop_toTopOf="@id/currentCurrencyOne" />
+
+        <TextView
+            android:id="@+id/otherPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@id/currentCurrencyOne"
+            app:layout_constraintStart_toEndOf="@id/equals"
+            app:layout_constraintTop_toTopOf="@id/currentCurrencyOne" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
