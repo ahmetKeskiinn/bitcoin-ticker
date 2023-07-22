@@ -49,6 +49,7 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding, HistoryViewModel>(
     private fun initUI() {
         binding.homeCurrency.text = args.historyItem?.currentItem ?: EMPTY
         binding.awayCurrency.text = args.historyItem?.asset_id_quote ?: EMPTY
+        backPressed(R.id.action_historyFragment_to_detailFragment)
     }
 
     private fun initClickListener() {

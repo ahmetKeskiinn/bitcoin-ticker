@@ -25,6 +25,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     override fun onResume() {
         super.onResume()
         initRv()
+        initUI()
+    }
+    private fun initUI(){
+        backPressed()
     }
     private fun getCrypto() {
         viewModel.getCrypto()?.observe(viewLifecycleOwner, Observer { list ->

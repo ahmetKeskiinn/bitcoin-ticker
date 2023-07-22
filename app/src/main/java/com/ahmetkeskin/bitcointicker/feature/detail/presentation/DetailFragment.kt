@@ -70,6 +70,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>(
     private fun initUI() {
         binding.currencyImage.loadImage(args.currency?.url)
         binding.currencyName.text = args.currency?.asset_id
+        backPressed(R.id.action_detailFragment_to_homeFragment)
     }
     private fun initClickListener() {
         binding.back.setOnClickListener {
