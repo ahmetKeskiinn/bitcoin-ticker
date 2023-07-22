@@ -20,7 +20,7 @@ android {
         versionName "1.0"
 
         buildConfigField "String", "BASE_URL", '"https://rest.coinapi.io/"'
-        buildConfigField "String", "API_KEY", '"624B8A28-1425-4310-B1EA-4220481DD58C"'
+        buildConfigField "String", "API_KEY", '"AACBADF7-A4C6-464D-82E9-DA3EAED2E0A4"'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -74,4 +74,11 @@ dependencies {
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.12.0'
 
+    // Chart
+    implementation 'com.github.st235:chartioview:0.8'
+
+    // Material Dialog
+    implementation "com.afollestad.material-dialogs:core:3.2.1"
+    implementation "com.afollestad.material-dialogs:lifecycle:3.2.1"
+    implementation "com.afollestad.material-dialogs:datetime:3.2.1"
 }
