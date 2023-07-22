@@ -7,4 +7,20 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="selectedColor">#c89f73</color>
+
+    <string-array name="colors">
+        <item>#f25749</item>
+        <item>#00f25749</item>
+    </string-array>
+
+    <string-array name="colors2">
+        <item>#E1DDE3</item>
+        <item>#EFECF1</item>
+    </string-array>
+
+    <integer-array name="positions">
+        <item>0</item>
+        <item>90</item>
+    </integer-array>
 </resources>
