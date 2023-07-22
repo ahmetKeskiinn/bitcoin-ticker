@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_left_arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/homeCurrency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/vs"
+            app:layout_constraintEnd_toStartOf="@id/vs"
+            app:layout_constraintTop_toTopOf="@id/vs" />
+
+        <TextView
+            android:id="@+id/vs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="vs"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:textStyle="italic|bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/awayCurrency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/vs"
+            app:layout_constraintStart_toEndOf="@id/vs"
+            app:layout_constraintTop_toTopOf="@id/vs" />
+
+        <TextView
+            android:id="@+id/offsetTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/offset_text"
+            android:textColor="@color/white"
+            android:textStyle="bold|italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/homeCurrency" />
+
+        <TextView
+            android:id="@+id/offsetSpinner"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@string/one_day"
+            android:textColor="@color/white"
+            android:textStyle="bold|italic"
+            app:layout_constraintStart_toStartOf="@id/offsetTextView"
+            app:layout_constraintTop_toBottomOf="@id/offsetTextView" />
+
+        <TextView
+            android:id="@+id/periodTextview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="@string/period_text"
+            android:textColor="@color/white"
+            android:textStyle="bold|italic"
+            app:layout_constraintBottom_toBottomOf="@id/offsetTextView"
+            app:layout_constraintStart_toEndOf="@id/offsetTextView"
+            app:layout_constraintTop_toTopOf="@id/offsetTextView" />
+
+        <TextView
+            android:id="@+id/periodSpinner"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@string/period_one_min"
+            android:textColor="@color/white"
+            android:textStyle="bold|italic"
+            app:layout_constraintStart_toStartOf="@id/periodTextview"
+            app:layout_constraintTop_toBottomOf="@id/periodTextview" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/screenTypeTabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/periodSpinner" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/historyShowPager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/screenTypeTabs" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
