@@ -2,6 +2,7 @@ package com.ahmetkeskin.bitcointicker.feature.history.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.listItems
@@ -16,6 +17,7 @@ import com.ahmetkeskin.bitcointicker.feature.history.data.pager.PagerType
 import com.ahmetkeskin.bitcointicker.feature.history.data.pager.PeriodEnum
 import com.ahmetkeskin.bitcointicker.feature.history.domain.GetHistory
 import com.ahmetkeskin.bitcointicker.feature.history.presentation.pager.PagerAdapter
+import com.ahmetkeskin.bitcointicker.feature.home.data.response.CryptoIconItem
 import com.google.android.material.tabs.TabLayout
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -55,6 +57,15 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding, HistoryViewModel>(
         }
         binding.periodSpinner.setOnClickListener {
             showPeriodDialog()
+        }
+        binding.back.setOnClickListener {
+            val action = HistoryFragmentDirections.actionHistoryFragmentToDetailFragment(
+                currency = CryptoIconItem(
+                    args.historyItem?.currentItem,
+                    args.historyItem?.currentItemUrl
+                )
+            )
+            Navigation.findNavController(binding.root).navigate(action)
         }
     }
 

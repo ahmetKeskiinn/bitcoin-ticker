@@ -37,5 +37,8 @@
         android:defaultValue="@null"
         android:name="historyItem"
         app:argType="com.ahmetkeskin.bitcointicker.feature.detail.data.response.CurrentAndOtherPriceItem"/>
+        <action
+            android:id="@+id/action_historyFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
 </navigation>

@@ -32,6 +32,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>(
         super.onResume()
         initUI()
         initRv()
+        initClickListener()
     }
 
     private fun getCryptoDetail() {
@@ -70,7 +71,11 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>(
         binding.currencyImage.loadImage(args.currency?.url)
         binding.currencyName.text = args.currency?.asset_id
     }
-
+    private fun initClickListener() {
+        binding.back.setOnClickListener {
+            Navigation.findNavController(binding.root).navigate(R.id.action_detailFragment_to_homeFragment)
+        }
+    }
     private fun addFavorite() {
         viewModel?.addFavorite()
     }
