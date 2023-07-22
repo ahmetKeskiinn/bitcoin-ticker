@@ -14,6 +14,7 @@ import com.ahmetkeskin.bitcointicker.feature.detail.data.response.CurrentAndOthe
 
 
 class CurrentAndOtherPriceListAdapter(
+    private val currentAndOtherPriceClickListener: CurrentAndOtherPriceClickListener
 ) : ListAdapter<CurrentAndOtherPriceItem, CurrentAndOtherPriceListAdapter.CityHolder>(
     diffCallback
 ) {
@@ -30,6 +31,9 @@ class CurrentAndOtherPriceListAdapter(
         with(getItem(position)) {
             holder.otherPrice.text = "${this.rate.toString()} ${this.asset_id_quote}"
             holder.currentImage.loadImage(this.currentItemUrl)
+            holder.itemView.setOnClickListener {
+                currentAndOtherPriceClickListener.isCurrentAndOtherPriceClicked(this)
+            }
         }
     }
 

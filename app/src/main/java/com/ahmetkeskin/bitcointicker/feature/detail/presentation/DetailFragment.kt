@@ -3,6 +3,7 @@ package com.ahmetkeskin.bitcointicker.feature.detail.presentation
 import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ahmetkeskin.bitcointicker.R
@@ -32,34 +33,45 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>(
         initUI()
         initRv()
     }
+
     private fun getCryptoDetail() {
-        viewModel.getDetail(GetDetail.Params(args.currency?.asset_id))?.observe(viewLifecycleOwner, Observer {
-            Log.d("TAG", "getCrypto: " + it.rates.toString())
-            val rateList = arrayListOf<CurrentAndOtherPriceItem>()
-            it.rates?.forEach {item ->
-                rateList.add(
-                    CurrentAndOtherPriceItem(
-                        args.currency?.asset_id,
-                        args.currency?.url,
-                        item?.asset_id_quote,
-                        item?.rate
+        viewModel?.getDetail(GetDetail.Params(args.currency?.asset_id))
+            ?.observe(viewLifecycleOwner, Observer {
+                Log.d("TAG", "getCrypto: " + it.rates.toString())
+                val rateList = arrayListOf<CurrentAndOtherPriceItem>()
+                it.rates?.forEach { item ->
+                    rateList.add(
+                        CurrentAndOtherPriceItem(
+                            args.currency?.asset_id,
+                            args.currency?.url,
+                            item?.asset_id_quote,
+                            item?.rate
+                        )
                     )
-                )
-            }
-            adapter?.submitList(rateList)
-        })
+                }
+                adapter?.submitList(rateList)
+            })
     }
+
     private fun initRv() {
-        adapter = CurrentAndOtherPriceListAdapter()
+        adapter = CurrentAndOtherPriceListAdapter(object : CurrentAndOtherPriceClickListener {
+            override fun isCurrentAndOtherPriceClicked(item: CurrentAndOtherPriceItem) {
+                val action =
+                    DetailFragmentDirections.actionDetailFragmentToHistoryFragment(historyItem = item)
+                Navigation.findNavController(binding.root).navigate(action)
+            }
+        })
         binding.priceForOthersRv.layoutManager = LinearLayoutManager(context)
         binding.priceForOthersRv.adapter = adapter
         getCryptoDetail()
     }
+
     private fun initUI() {
         binding.currencyImage.loadImage(args.currency?.url)
         binding.currencyName.text = args.currency?.asset_id
     }
+
     private fun addFavorite() {
-        viewModel.addFavorite()
+        viewModel?.addFavorite()
     }
 }
