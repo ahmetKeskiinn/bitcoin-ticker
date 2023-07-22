@@ -1,6 +1,7 @@
 package com.ahmetkeskin.bitcointicker.base
 
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
+import androidx.navigation.fragment.findNavController
 
 
 abstract class BaseFragment<B : ViewDataBinding, VM : BaseViewModel>(
@@ -46,5 +48,26 @@ abstract class BaseFragment<B : ViewDataBinding, VM : BaseViewModel>(
 
     open fun showToast(body: String?) {
         Toast.makeText(context, body, Toast.LENGTH_LONG).show()
+    }
+    open fun backPressed(id: Int? = null) {
+        view?.let {
+            it.isFocusableInTouchMode = true
+            it.requestFocus()
+            it.setOnKeyListener(object : View.OnKeyListener {
+                override fun onKey(v: View?, keyCode: Int, event: KeyEvent): Boolean {
+                    if (event.action === KeyEvent.ACTION_DOWN) {
+                        if (keyCode == KeyEvent.KEYCODE_BACK) {
+                            if (id != null) {
+                                findNavController().navigate(id)
+                            } else {
+                                activity?.finish()
+                            }
+                            return true
+                        }
+                    }
+                    return false
+                }
+            })
+        }
     }
 }
