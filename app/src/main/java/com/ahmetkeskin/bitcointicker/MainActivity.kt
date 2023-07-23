@@ -1,7 +1,6 @@
 package com.ahmetkeskin.bitcointicker
 
 import android.os.Bundle
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -10,6 +9,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.ahmetkeskin.bitcointicker.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -21,7 +21,9 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
         window?.statusBarColor = getColor(R.color.black)
         setUpBottomNav()
+
     }
+
     private fun setUpBottomNav() {
         val navView: BottomNavigationView? = binding?.navView
 

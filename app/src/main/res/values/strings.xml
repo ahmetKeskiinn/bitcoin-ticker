@@ -59,4 +59,5 @@
     <string name="home_fragment">Home</string>
     <string name="favorite_fragment">Favorite</string>
     <string name="favorite_hint">Enter currency!</string>
+    <string name="crash_title">Sorry for crash!</string>
 </resources>

@@ -62,6 +62,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     }
     private fun getCrypto() {
         showProgress()
+        //print(0/0)
         viewModel.getCrypto()?.observe(viewLifecycleOwner, Observer { list ->
             currencyList = list
             adapter?.submitList(list)
