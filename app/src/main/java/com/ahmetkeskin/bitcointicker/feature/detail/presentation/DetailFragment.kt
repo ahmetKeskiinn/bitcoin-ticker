@@ -44,7 +44,8 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>(
     }
 
     private fun getCryptoDetail() {
-        viewModel?.getDetail(GetDetail.Params(args.currency?.asset_id))
+        showProgress()
+        viewModel.getDetail(GetDetail.Params(args.currency?.asset_id))
             ?.observe(viewLifecycleOwner, Observer {
                 val rateList = arrayListOf<CurrentAndOtherPriceItem>()
                 it.rates?.forEach { item ->
@@ -63,6 +64,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>(
                     )
                 }
                 adapter?.submitList(rateList)
+                hideProgress()
             })
     }
 
@@ -111,7 +113,6 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>(
                 args.currency?.asset_id ?: EMPTY
             )
         ).observe(viewLifecycleOwner, Observer {
-            Log.d("TAG", "checkCurrencyInDb: " + it)
             it?.let {
                 viewModel.setFollowingState(it.isEmpty().not())
             }
@@ -119,6 +120,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>(
     }
 
     private fun manageFavorite() {
+        showProgress()
         if (viewModel.isFollowing.value == false) {
             addFavorite()
         } else {
@@ -136,7 +138,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>(
             )
         ).observe(viewLifecycleOwner, Observer {
             viewModel.setFollowingState(it ?: false)
-
+            hideProgress()
         })
     }
 
@@ -149,7 +151,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>(
                 )
             )
         ).observe(viewLifecycleOwner, Observer {
-            Log.d("TAG", "removeFavorite: " + it)
+            hideProgress()
             viewModel.setFollowingState(it?.not() ?: true)
         })
     }
