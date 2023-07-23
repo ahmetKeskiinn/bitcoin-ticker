@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="44dp"
+                android:src="@drawable/logo"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/login"
+                android:textColor="@color/selectedColor"
+                android:textSize="23sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/logo" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/emailLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/bg_login"
+                android:hint="@string/email"
+                android:textColorHint="@color/white"
+                app:boxBackgroundColor="@color/white"
+                app:boxStrokeColor="@null"
+                app:hintTextColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/emailText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textNoSuggestions"
+                    android:imeOptions="actionNext"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:nextFocusForward="@id/passwordLayout"
+                    android:background="@drawable/bg_login"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textCursorDrawable="@null" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/passwordLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/bg_login"
+                android:hint="@string/password"
+                android:textColorHint="@color/white"
+                app:boxBackgroundColor="@color/white"
+                app:boxStrokeColor="@null"
+                app:endIconMode="password_toggle"
+                app:hintTextColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/emailLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passwordText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_login"
+                    android:textColor="@color/white"
+                    android:maxLines="1"
+                    android:inputType="numberPassword"
+                    android:textColorHint="@color/white"
+                    app:boxStrokeColor="@null" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.ahmetkeskin.bitcointicker.components.TickerButton
+                android:id="@+id/continueButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_button_ripple"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/passwordLayout" />
+
+               <View
+                android:id="@+id/dividerFirst"
+                android:layout_width="120dp"
+                android:layout_height="2dp"
+                android:background="@color/selectedColor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/continueButton"
+                android:layout_marginTop="63dp"
+                android:layout_marginStart="60dp"/>
+            <TextView
+                android:id="@+id/orStr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/or_str"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:layout_marginStart="16dp"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toEndOf="@id/dividerFirst"
+                app:layout_constraintTop_toTopOf="@id/dividerFirst"
+                app:layout_constraintBottom_toBottomOf="@id/dividerFirst"/>
+            <View
+                android:layout_width="120dp"
+                android:layout_height="2dp"
+                android:background="@color/selectedColor"
+                android:layout_marginStart="16dp"
+                app:layout_constraintTop_toTopOf="@id/orStr"
+                app:layout_constraintBottom_toBottomOf="@id/orStr"
+                app:layout_constraintStart_toEndOf="@id/orStr"/>
+            <TextView
+                android:id="@+id/doNotHaveAccountTw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="@string/do_not_have_account"
+                app:layout_constraintTop_toBottomOf="@id/orStr"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="8dp"/>
+            <com.ahmetkeskin.bitcointicker.components.TickerButton
+                android:id="@+id/signUpWithEmailButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/doNotHaveAccountTw" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
