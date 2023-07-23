@@ -1,4 +1,4 @@
-package com.ahmetkeskin.bitcointicker.feature.home.presentation
+package com.ahmetkeskin.bitcointicker.base.common
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ahmetkeskin.bitcointicker.R
 import com.ahmetkeskin.bitcointicker.base.loadImage
 import com.ahmetkeskin.bitcointicker.feature.home.data.response.CryptoIconItem
-
+import com.ahmetkeskin.bitcointicker.feature.home.presentation.CurrencyClickListener
 
 class CurrencyListAdapter(
     private val listener: CurrencyClickListener
