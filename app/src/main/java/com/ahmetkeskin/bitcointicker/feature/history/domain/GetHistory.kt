@@ -39,7 +39,6 @@ class GetHistory @Inject constructor(
                                 time_end = it.time_end
                             )
                         )?.toMutableList()
-                    Log.d("TAG", "execute: " + value)
                 }
             }
         }
