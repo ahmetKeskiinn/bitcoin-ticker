@@ -1,5 +1,7 @@
 package com.ahmetkeskin.bitcointicker.feature.detail.presentation
 
+import android.util.Log
+import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -17,6 +19,7 @@ import com.ahmetkeskin.bitcointicker.base.loadImage
 import com.ahmetkeskin.bitcointicker.databinding.FragmentDetailBinding
 import com.ahmetkeskin.bitcointicker.feature.detail.data.response.CurrentAndOtherPriceItem
 import com.ahmetkeskin.bitcointicker.feature.detail.domain.GetDetail
+import com.ahmetkeskin.bitcointicker.feature.home.data.response.CryptoIconItem
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,6 +29,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>(
     val args: DetailFragmentArgs by navArgs()
 
     private var adapter: CurrentAndOtherPriceListAdapter? = null
+    var currencyList: List<CurrentAndOtherPriceItem>? = null
     private var currentCurrencyWithUSD = EMPTY
     override fun onInitDataBinding() {
         activity?.let {
@@ -62,11 +66,32 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>(
                         )
                     )
                 }
+                currencyList = rateList
                 adapter?.submitList(rateList)
                 hideProgress()
             })
     }
-
+    private fun initTextWatcher() {
+        binding.searchEditText.text.clear()
+        binding.searchEditText.doAfterTextChanged {
+            it?.let {
+                if (it.trim().isNotEmpty()) {
+                    searchWithQuery(it.toString())
+                } else {
+                    adapter?.submitList(currencyList)
+                }
+            }
+        }
+    }
+    private fun searchWithQuery(searchQuery: String) {
+        val newCurrencyList = arrayListOf<CurrentAndOtherPriceItem>()
+        currencyList?.forEach {
+            if (it.asset_id_quote?.lowercase()?.contains(searchQuery.lowercase()) == true) {
+                newCurrencyList.add(it)
+            }
+        }
+        adapter?.submitList(newCurrencyList)
+    }
     private fun initRv() {
         adapter = CurrentAndOtherPriceListAdapter(object : CurrentAndOtherPriceClickListener {
             override fun isCurrentAndOtherPriceClicked(item: CurrentAndOtherPriceItem) {
@@ -90,6 +115,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>(
             true -> backPressed(R.id.action_detailFragment_to_navigation_favorite)
             false -> backPressed(R.id.action_detailFragment_to_homeFragment)
         }
+        initTextWatcher()
     }
 
     private fun initClickListener() {
