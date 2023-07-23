@@ -14,7 +14,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.ahmetkeskin.bitcointicker.feature.auth.register.RegisterFragment"
+        android:name="com.ahmetkeskin.bitcointicker.feature.auth.register.presentation.RegisterFragment"
         android:label="RegisterFragment" >
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"

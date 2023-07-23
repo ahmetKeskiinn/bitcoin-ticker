@@ -53,5 +53,7 @@
     <string name="sign_up_with_email">Sign up with E-mail</string>
     <string name="register_have_account">Already have an account?</string>
     <string name="intro_clickable_login">Login</string>
-
+    <string name="empty_email">Email cannot be empty!</string>
+    <string name="email_pattern">E-mail pattern is invalid!</string>
+    <string name="something_went_wrong">Somethings went wrong, please try again later!</string>
 </resources>
