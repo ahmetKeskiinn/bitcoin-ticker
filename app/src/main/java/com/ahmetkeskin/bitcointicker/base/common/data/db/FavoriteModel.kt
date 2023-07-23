@@ -8,5 +8,6 @@ data class FavoriteModel(
     var id: String? = null,
     @PrimaryKey
     val favCoinName: String,
-    val favCoinRate: String
+    val favCoinRate: String,
+    val url: String
 )

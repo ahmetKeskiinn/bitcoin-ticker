@@ -45,6 +45,7 @@ class RemoveFavoriteOnFB @Inject constructor(
                                                 id = checkList[0].id,
                                                 favCoinName = params.favoriteModel.favCoinName,
                                                 favCoinRate = params.favoriteModel.favCoinRate,
+                                                url = params.favoriteModel.url
                                             )
                                         )
                                     )
