@@ -43,4 +43,15 @@
     <string name="period_ten_day">10 Days</string>
     <string name="period_text">Choose Period</string>
     <string name="offset_text">Choose Offset</string>
+    <string name="or_str">OR</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="login">Login</string>
+    <string name="button_continue">Continue</string>
+    <string name="register_title">"Register now, it's Fast"</string>
+    <string name="do_not_have_account">Don’t have an account?</string>
+    <string name="sign_up_with_email">Sign up with E-mail</string>
+    <string name="register_have_account">Already have an account?</string>
+    <string name="intro_clickable_login">Login</string>
+
 </resources>

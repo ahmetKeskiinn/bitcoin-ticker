@@ -81,4 +81,7 @@ dependencies {
     implementation "com.afollestad.material-dialogs:core:3.2.1"
     implementation "com.afollestad.material-dialogs:lifecycle:3.2.1"
     implementation "com.afollestad.material-dialogs:datetime:3.2.1"
+
+    // Lottie
+    implementation 'com.airbnb.android:lottie:5.1.1'
 }

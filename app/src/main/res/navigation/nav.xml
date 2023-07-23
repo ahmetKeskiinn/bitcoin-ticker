@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav"
     app:startDestination="@id/homeFragment">
-
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.ahmetkeskin.bitcointicker.feature.home.presentation.HomeFragment"
@@ -41,4 +40,5 @@
             android:id="@+id/action_historyFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
     </fragment>
+
 </navigation>

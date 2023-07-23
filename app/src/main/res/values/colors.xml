@@ -7,8 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="primaryGrayColor">#9E9E9E</color>
     <color name="selectedColor">#c89f73</color>
-
+    <color name="unSelectedColor">#40ffffff</color>
+    <color name="bg_button_sign_up">#535353</color>
+    <color name="clickable_text_color">#3b82dc</color>
     <string-array name="colors">
         <item>#f25749</item>
         <item>#00f25749</item>
