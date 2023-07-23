@@ -20,6 +20,8 @@ abstract class BaseFragment<B : ViewDataBinding, VM : BaseViewModel>(
     @LayoutRes private val layoutId: Int
 ) : Fragment() {
 
+    private var progressDialog: BaseProgressDialog? = null
+
     lateinit var binding: B
     abstract fun onInitDataBinding()
     private var viewModelStoreOwner: ViewModelStoreOwner? = null
@@ -69,5 +71,13 @@ abstract class BaseFragment<B : ViewDataBinding, VM : BaseViewModel>(
                 }
             })
         }
+    }
+    open fun showProgress() {
+        progressDialog = BaseProgressDialog()
+        progressDialog?.show(childFragmentManager, "PROGRESS")
+    }
+
+    open fun hideProgress() {
+        progressDialog?.dismiss()
     }
 }
