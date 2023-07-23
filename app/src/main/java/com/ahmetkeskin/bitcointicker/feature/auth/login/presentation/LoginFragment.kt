@@ -1,7 +1,10 @@
 package com.ahmetkeskin.bitcointicker.feature.auth.login.presentation
 
+import android.content.Intent
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import com.ahmetkeskin.bitcointicker.MainActivity
 import com.ahmetkeskin.bitcointicker.R
 import com.ahmetkeskin.bitcointicker.base.BaseFragment
 import com.ahmetkeskin.bitcointicker.components.TickerButtonClicked
@@ -10,6 +13,7 @@ import com.ahmetkeskin.bitcointicker.components.buttonattributes.Gravity
 import com.ahmetkeskin.bitcointicker.components.buttonattributes.TickerButtonAttributes
 import com.ahmetkeskin.bitcointicker.components.buttonattributes.TickerButtonTextAttributes
 import com.ahmetkeskin.bitcointicker.databinding.FragmentLoginBinding
+import com.ahmetkeskin.bitcointicker.feature.auth.splash.data.response.UserModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,10 +26,12 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(
         }
         initUI()
     }
+
     private fun initUI() {
         initContinueButton()
         initRegisterButton()
     }
+
     private fun initContinueButton() {
         binding.continueButton.apply {
             setButton(
@@ -45,12 +51,12 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(
             )
             listener = object : TickerButtonClicked {
                 override fun isButtonClicked(status: Boolean) {
-                    //auth()
+                    prepareAuth()
                 }
             }
         }
-
     }
+
     private fun initRegisterButton() {
         binding.signUpWithEmailButton.apply {
             setButton(
@@ -76,7 +82,36 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(
                 }
             }
         }
-
     }
 
+    private fun prepareAuth() {
+        val email = binding.emailText.text.toString()
+        val password = binding.passwordText.text.toString()
+        if (email.isNotEmpty()) {
+            if (password.isNotEmpty()) {
+                auth(email, password)
+            }
+        }
+    }
+
+    private fun auth(email: String, password: String) {
+        val userModel = UserModel(
+            email = email,
+            password = password
+        )
+        viewModel.authentication(
+            userModel
+        ).observe(viewLifecycleOwner, Observer {
+            if (it == true) {
+                saveUserSettings(userModel)
+                val intent = Intent(activity, MainActivity::class.java)
+                startActivity(intent)
+                activity?.finish()
+            }
+        })
+    }
+
+    private fun saveUserSettings(userModel: UserModel) {
+        viewModel.saveUserSettings(userModel)
+    }
 }
