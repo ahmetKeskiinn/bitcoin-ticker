@@ -31,8 +31,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
         backPressed()
     }
     private fun getCrypto() {
+        showProgress()
         viewModel.getCrypto()?.observe(viewLifecycleOwner, Observer { list ->
             adapter?.submitList(list)
+            hideProgress()
         })
     }
     private fun initRv() {

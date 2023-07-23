@@ -1,6 +1,7 @@
 package com.ahmetkeskin.bitcointicker.feature.history.presentation
 
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
@@ -44,6 +45,7 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding, HistoryViewModel>(
         initTabLayout()
         initHistoryPager()
         initClickListener()
+        observeViewModel()
     }
 
     private fun initUI() {
@@ -71,6 +73,7 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding, HistoryViewModel>(
     }
 
     private fun getHistory() {
+        showProgress()
         viewModel.getHistory(
             GetHistory.Params(
                 asset_id_base = args.historyItem?.currentItem ?: EMPTY,
@@ -80,6 +83,11 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding, HistoryViewModel>(
                 time_end = getCurrentDate()
             )
         )
+    }
+    private fun observeViewModel() {
+        viewModel.historyLiveData.observe(viewLifecycleOwner, Observer {
+            hideProgress()
+        })
     }
 
     private fun showOffsetDialog() {
@@ -216,9 +224,5 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding, HistoryViewModel>(
             override fun onTabReselected(tab: TabLayout.Tab?) = Unit
 
         })
-    }
-
-    private fun initSpinner() {
-
     }
 }

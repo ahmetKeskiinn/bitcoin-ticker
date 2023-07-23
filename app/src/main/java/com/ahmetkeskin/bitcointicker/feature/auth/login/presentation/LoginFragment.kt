@@ -95,6 +95,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(
     }
 
     private fun auth(email: String, password: String) {
+        showProgress()
         val userModel = UserModel(
             email = email,
             password = password
@@ -108,6 +109,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(
                 startActivity(intent)
                 activity?.finish()
             }
+            hideProgress()
         })
     }
 

@@ -1,6 +1,6 @@
 package com.ahmetkeskin.bitcointicker.feature.history.presentation.pager
 
-import android.util.Log
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ahmetkeskin.bitcointicker.R
@@ -11,6 +11,10 @@ import com.ahmetkeskin.bitcointicker.feature.history.data.pager.PagerListingItem
 import com.ahmetkeskin.bitcointicker.feature.history.data.pager.PagerType
 import com.ahmetkeskin.bitcointicker.feature.history.data.response.HistoryResponseItem
 import com.ahmetkeskin.bitcointicker.feature.history.presentation.HistoryViewModel
+import com.github.mikephil.charting.animation.Easing
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,7 +41,6 @@ class PagerFragment(
     private fun observeViewModel() {
         viewModel.historyLiveData.observe(this) {
             it?.let {
-                Log.d("TAG", "observeViewModel:-> " + it.size)
                 when (type) {
                     PagerType.LISTING -> initHistoryRv(it)
                     PagerType.CHART -> prepareChart(it)
@@ -46,17 +49,40 @@ class PagerFragment(
         }
     }
 
-    private fun prepareChart(historyResponseItems: List<HistoryResponseItem>) {
-        val chartView = binding.newChart
-        chartView.adapter =
-            ChartAdapter(quoteCurrency ?: EMPTY, generateList(historyResponseItems))
-
-        chartView.addOnPointSelectedObserver { data ->
-            val currentCompare = data as ChartItem
-            binding.selectedPointTextview.text = "1 $baseCurrency = ${currentCompare.rate}"
-            val newDate = currentCompare.dateTime.split(".")[0].split("T")
-            binding.selectedPointDate.text = "${newDate[1]} ${newDate[0]}"
+    private fun generateListChartList(historyResponseItems: MutableList<HistoryResponseItem>): ArrayList<Entry> {
+        val listingList = arrayListOf<Entry>()
+        historyResponseItems.forEachIndexed { index, historyResponseItem ->
+            listingList.add(
+                Entry(
+                    index.toFloat(),
+                    historyResponseItem.rate_close?.toFloat() ?: 0F
+                )
+            )
         }
+        return listingList
+    }
+
+    private fun prepareChart(historyResponseItems: MutableList<HistoryResponseItem>) {
+        binding.lineChart.isVisible = true
+        val lineChart = binding.lineChart
+        val vl = LineDataSet(generateListChartList(historyResponseItems), EMPTY)
+
+        vl.setDrawValues(false)
+        vl.setDrawFilled(true)
+        vl.lineWidth = 3f
+        vl.fillColor = R.color.selectedColor
+        vl.fillAlpha = R.color.black
+        lineChart.xAxis.labelRotationAngle = 0f
+
+        lineChart.data = LineData(vl)
+        lineChart.axisRight.isEnabled = false
+
+        lineChart.setTouchEnabled(true)
+        lineChart.setPinchZoom(true)
+
+        lineChart.animateX(1000, Easing.EaseInCirc)
+        val markerView = context?.let { CustomMarker(it, R.layout.marker_view) }
+        lineChart.marker = markerView
     }
 
     private fun initHistoryRv(historyResponseItems: List<HistoryResponseItem>) {

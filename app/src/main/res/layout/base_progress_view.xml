@@ -22,7 +22,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
-            app:lottie_fileName="loading.json"
+            app:lottie_rawRes="@raw/loading"
             android:layout_marginTop="8dp" />
     </FrameLayout>
 

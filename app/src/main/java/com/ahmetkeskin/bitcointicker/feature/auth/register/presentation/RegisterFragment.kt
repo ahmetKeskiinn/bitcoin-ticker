@@ -66,6 +66,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterViewModel
     }
 
     private fun register(userModel: UserModel) {
+        showProgress()
         viewModel.register(
             userModel
         ).observe(viewLifecycleOwner, Observer {
@@ -75,6 +76,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterViewModel
             } else {
                 showToast(getString(R.string.something_went_wrong))
             }
+            hideProgress()
         })
     }
 
