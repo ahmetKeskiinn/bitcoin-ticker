@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TickerButton">
+        <attr name="text_color" format="color" />
+        <attr name="text_size" format="dimension" />
+        <attr name="text_title" format="string" />
+        <attr name="button_background" format="reference|color" />
+        <attr name="button_image" format="reference" />
+        <attr name="button_textStyle" format="reference" />
+        <attr name="text_font" format="string" />
+        <attr name="text_include_padding" format="boolean" />
+        <attr name="button_statev2" format="enum">
+            <enum name="idle" value="0" />
+            <enum name="disabled" value="1" />
+            <enum name="progress" value="2" />
+        </attr>
+    </declare-styleable>
+</resources>
