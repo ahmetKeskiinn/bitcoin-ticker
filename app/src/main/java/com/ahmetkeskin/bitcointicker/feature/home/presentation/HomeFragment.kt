@@ -1,5 +1,7 @@
 package com.ahmetkeskin.bitcointicker.feature.home.presentation
 
+import android.util.Log
+import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -17,6 +19,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     layoutId = R.layout.fragment_home
 ) {
     private var adapter: CurrencyListAdapter? = null
+    var currencyList: List<CryptoIconItem>? = null
     override fun onInitDataBinding() {
         activity?.let {
             viewModel = ViewModelProvider(it)[HomeViewModel::class.java]
@@ -28,27 +31,58 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
         initRv()
         initUI()
     }
-    private fun initUI(){
+
+    private fun initUI() {
         backPressed()
+        initTextWatcher()
+    }
+    private fun initTextWatcher() {
+        binding.searchEditText.text.clear()
+        binding.searchEditText.doAfterTextChanged {
+            it?.let {
+                if (it.trim().isNotEmpty()) {
+                    searchWithQuery(it.toString())
+                } else {
+                    adapter?.submitList(currencyList)
+                }
+            }
+        }
+    }
+    private fun searchWithQuery(searchQuery: String) {
+        val newCurrencyList = arrayListOf<CryptoIconItem>()
+        currencyList?.forEach {
+            if (it.asset_id?.lowercase()?.contains(searchQuery.lowercase()) == true) {
+                newCurrencyList.add(it)
+            } else {
+                Log.d("TAG", "searchWithQuery: " + it.asset_id)
+            }
+        }
+        Log.d("TAG", "searchWithQuery: " + newCurrencyList)
+        adapter?.submitList(newCurrencyList)
     }
     private fun getCrypto() {
         showProgress()
         viewModel.getCrypto()?.observe(viewLifecycleOwner, Observer { list ->
+            currencyList = list
             adapter?.submitList(list)
             hideProgress()
         })
     }
+
     private fun initRv() {
         adapter = CurrencyListAdapter(object : CurrencyClickListener {
             override fun isCurrencyClicked(item: CryptoIconItem) {
-                val action = HomeFragmentDirections.actionNavigationHomeToDetailFragment(item, false)
+                val action =
+                    HomeFragmentDirections.actionNavigationHomeToDetailFragment(item, false)
                 Navigation.findNavController(binding.root).navigate(action)
             }
         })
-        binding.currencyRv.layoutManager = GridLayoutManager (context,
+        binding.currencyRv.layoutManager = GridLayoutManager(
+            context,
             2,
             GridLayoutManager.VERTICAL,
-            false)
+            false
+        )
         binding.currencyRv.adapter = adapter
         getCrypto()
     }
