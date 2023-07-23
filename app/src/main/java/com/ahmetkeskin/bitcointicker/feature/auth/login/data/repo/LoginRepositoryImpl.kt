@@ -8,5 +8,4 @@ class LoginRepositoryImpl @Inject constructor(
     private val dataSource: LoginDataSource
 ) : LoginRepository {
     override fun saveUserSettings(userModel: UserModel) = dataSource.saveUserSettings(userModel)
-
 }

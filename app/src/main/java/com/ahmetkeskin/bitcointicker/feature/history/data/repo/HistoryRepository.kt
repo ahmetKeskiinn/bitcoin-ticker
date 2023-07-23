@@ -8,5 +8,4 @@ interface HistoryRepository {
     suspend fun getHistory(
         historyRequest: HistoryRequest
     ): List<HistoryResponseItem>?
-
 }

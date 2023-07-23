@@ -13,7 +13,6 @@ import com.ahmetkeskin.bitcointicker.databinding.FragmentHomeBinding
 import com.ahmetkeskin.bitcointicker.feature.home.data.response.CryptoIconItem
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     layoutId = R.layout.fragment_home
@@ -62,12 +61,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     }
     private fun getCrypto() {
         showProgress()
-        //print(0/0)
-        viewModel.getCrypto()?.observe(viewLifecycleOwner, Observer { list ->
-            currencyList = list
-            adapter?.submitList(list)
-            hideProgress()
-        })
+        // print(0/0)
+        viewModel.getCrypto()?.observe(
+            viewLifecycleOwner,
+            Observer { list ->
+                currencyList = list
+                adapter?.submitList(list)
+                hideProgress()
+            }
+        )
     }
 
     private fun initRv() {

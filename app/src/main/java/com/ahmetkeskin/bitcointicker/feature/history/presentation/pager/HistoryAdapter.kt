@@ -14,8 +14,7 @@ import com.ahmetkeskin.bitcointicker.base.loadImage
 import com.ahmetkeskin.bitcointicker.base.twoLetterAfterComma
 import com.ahmetkeskin.bitcointicker.feature.history.data.pager.PagerListingItem
 
-class HistoryAdapter(
-) : ListAdapter<PagerListingItem, HistoryAdapter.CityHolder>(
+class HistoryAdapter() : ListAdapter<PagerListingItem, HistoryAdapter.CityHolder>(
     diffCallback
 ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CityHolder {

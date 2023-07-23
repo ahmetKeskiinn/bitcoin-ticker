@@ -3,7 +3,6 @@ package com.ahmetkeskin.bitcointicker.feature.auth.register.presentation
 import com.ahmetkeskin.bitcointicker.base.BaseViewModel
 import com.ahmetkeskin.bitcointicker.feature.auth.register.domain.SetRegisterOnFB
 import com.ahmetkeskin.bitcointicker.feature.auth.splash.data.response.UserModel
-import com.ahmetkeskin.bitcointicker.feature.home.domain.GetCryptos
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

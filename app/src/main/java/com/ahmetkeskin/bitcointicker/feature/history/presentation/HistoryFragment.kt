@@ -10,8 +10,8 @@ import com.afollestad.materialdialogs.list.listItems
 import com.ahmetkeskin.bitcointicker.R
 import com.ahmetkeskin.bitcointicker.base.BaseFragment
 import com.ahmetkeskin.bitcointicker.base.EMPTY
-import com.ahmetkeskin.bitcointicker.base.getCurrentDate
-import com.ahmetkeskin.bitcointicker.base.getMinusForCurrentDate
+import com.ahmetkeskin.bitcointicker.base.extensions.getCurrentDate
+import com.ahmetkeskin.bitcointicker.base.extensions.getMinusForCurrentDate
 import com.ahmetkeskin.bitcointicker.databinding.FragmentHistoryBinding
 import com.ahmetkeskin.bitcointicker.feature.history.data.pager.HistoryEnum
 import com.ahmetkeskin.bitcointicker.feature.history.data.pager.PagerType
@@ -85,9 +85,12 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding, HistoryViewModel>(
         )
     }
     private fun observeViewModel() {
-        viewModel.historyLiveData.observe(viewLifecycleOwner, Observer {
-            hideProgress()
-        })
+        viewModel.historyLiveData.observe(
+            viewLifecycleOwner,
+            Observer {
+                hideProgress()
+            }
+        )
     }
 
     private fun showOffsetDialog() {
@@ -190,7 +193,6 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding, HistoryViewModel>(
                 addNewTabsOnTabLayout()
                 addPositionChangeListenerOnTabLayout()
             }
-
         }
     }
 
@@ -203,7 +205,6 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding, HistoryViewModel>(
             chartTab.text = getString(R.string.chart_tab)
             addTab(chartTab)
         }
-
     }
 
     private fun addPositionChangeListenerOnTabLayout() {
@@ -222,7 +223,6 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding, HistoryViewModel>(
             override fun onTabUnselected(tab: TabLayout.Tab?) = Unit
 
             override fun onTabReselected(tab: TabLayout.Tab?) = Unit
-
         })
     }
 }

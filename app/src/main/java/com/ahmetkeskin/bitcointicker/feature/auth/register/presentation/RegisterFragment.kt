@@ -46,7 +46,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterViewModel
             listener = object : TickerButtonClicked {
                 override fun isButtonClicked(status: Boolean) {
                     setRegister()
-                    //auth()
+                    // auth()
                 }
             }
         }
@@ -69,15 +69,18 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterViewModel
         showProgress()
         viewModel.register(
             userModel
-        ).observe(viewLifecycleOwner, Observer {
-            if (it == true) {
-                Navigation.findNavController(binding.root)
-                    .navigate(R.id.action_registerFragment_to_loginFragment)
-            } else {
-                showToast(getString(R.string.something_went_wrong))
+        ).observe(
+            viewLifecycleOwner,
+            Observer {
+                if (it == true) {
+                    Navigation.findNavController(binding.root)
+                        .navigate(R.id.action_registerFragment_to_loginFragment)
+                } else {
+                    showToast(getString(R.string.something_went_wrong))
+                }
+                hideProgress()
             }
-            hideProgress()
-        })
+        )
     }
 
     private fun checkEmail(email: String): Boolean {

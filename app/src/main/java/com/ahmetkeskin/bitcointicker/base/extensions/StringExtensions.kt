@@ -7,5 +7,3 @@ const val FAVORITE_CURRENCY = "favoriteCurrency"
 const val FAVORITE_CURRENCY_RATE = "favoriteRate"
 
 const val USD = "USD"
-
-

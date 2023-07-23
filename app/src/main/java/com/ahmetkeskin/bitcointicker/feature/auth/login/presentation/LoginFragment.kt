@@ -102,15 +102,18 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(
         )
         viewModel.authentication(
             userModel
-        ).observe(viewLifecycleOwner, Observer {
-            if (it == true) {
-                saveUserSettings(userModel)
-                val intent = Intent(activity, MainActivity::class.java)
-                startActivity(intent)
-                activity?.finish()
+        ).observe(
+            viewLifecycleOwner,
+            Observer {
+                if (it == true) {
+                    saveUserSettings(userModel)
+                    val intent = Intent(activity, MainActivity::class.java)
+                    startActivity(intent)
+                    activity?.finish()
+                }
+                hideProgress()
             }
-            hideProgress()
-        })
+        )
     }
 
     private fun saveUserSettings(userModel: UserModel) {

@@ -1,8 +1,10 @@
-package com.ahmetkeskin.bitcointicker.base
+package com.ahmetkeskin.bitcointicker.base.extensions
 
 import android.util.Log
+import com.ahmetkeskin.bitcointicker.base.DATE_SUFFIX
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Date
 
 fun getCurrentDate(): String {
     val f = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")

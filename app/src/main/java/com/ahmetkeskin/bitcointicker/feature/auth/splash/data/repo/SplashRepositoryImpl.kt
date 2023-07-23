@@ -1,7 +1,6 @@
 package com.ahmetkeskin.bitcointicker.feature.auth.splash.data.repo
 
 import com.ahmetkeskin.bitcointicker.feature.auth.splash.data.repo.datasource.SplashDataSource
-import com.ahmetkeskin.bitcointicker.feature.auth.splash.data.response.UserModel
 import javax.inject.Inject
 
 class SplashRepositoryImpl @Inject constructor(
@@ -9,5 +8,4 @@ class SplashRepositoryImpl @Inject constructor(
 ) : SplashRepository {
 
     override suspend fun getLocalSettings() = dataSource.getLocalSettings()
-
 }

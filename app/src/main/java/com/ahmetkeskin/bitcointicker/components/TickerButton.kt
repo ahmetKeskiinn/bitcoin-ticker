@@ -19,7 +19,6 @@ import com.ahmetkeskin.bitcointicker.base.toPx
 import com.ahmetkeskin.bitcointicker.components.buttonattributes.Gravity
 import com.ahmetkeskin.bitcointicker.components.buttonattributes.TickerButtonAttributes
 
-
 class TickerButton @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,
@@ -82,7 +81,7 @@ class TickerButton @JvmOverloads constructor(
         model: TickerButtonAttributes?
     ) {
         model?.let {
-            //mButtonBackground = background
+            // mButtonBackground = background
             it.buttonAttributes?.let { buttonAttributes ->
                 buttonAttributes.tickerButtonTextAttributes?.let { textAttributes ->
                     setButtonText(

@@ -10,7 +10,6 @@ import com.ahmetkeskin.bitcointicker.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private var binding: ActivityMainBinding? = null
@@ -21,7 +20,6 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
         window?.statusBarColor = getColor(R.color.black)
         setUpBottomNav()
-
     }
 
     private fun setUpBottomNav() {

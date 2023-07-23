@@ -1,7 +1,6 @@
 package com.ahmetkeskin.bitcointicker.feature.history.presentation
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.ahmetkeskin.bitcointicker.base.BaseViewModel
 import com.ahmetkeskin.bitcointicker.feature.history.data.response.HistoryResponseItem
 import com.ahmetkeskin.bitcointicker.feature.history.domain.GetHistory

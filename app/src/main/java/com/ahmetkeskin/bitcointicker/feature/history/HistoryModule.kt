@@ -25,5 +25,4 @@ class HistoryModule {
     fun providesDetailRepository(dataSource: HistoryDataSource): HistoryRepository {
         return HistoryRepositoryImpl(dataSource)
     }
-
 }

@@ -12,7 +12,6 @@ import com.ahmetkeskin.bitcointicker.R
 import com.ahmetkeskin.bitcointicker.base.loadImage
 import com.ahmetkeskin.bitcointicker.feature.detail.data.response.CurrentAndOtherPriceItem
 
-
 class CurrentAndOtherPriceListAdapter(
     private val currentAndOtherPriceClickListener: CurrentAndOtherPriceClickListener
 ) : ListAdapter<CurrentAndOtherPriceItem, CurrentAndOtherPriceListAdapter.CityHolder>(
@@ -29,7 +28,7 @@ class CurrentAndOtherPriceListAdapter(
 
     override fun onBindViewHolder(holder: CityHolder, position: Int) {
         with(getItem(position)) {
-            holder.otherPrice.text = "${this.rate.toString()} ${this.asset_id_quote}"
+            holder.otherPrice.text = "${this.rate} ${this.asset_id_quote}"
             holder.currentImage.loadImage(this.currentItemUrl)
             holder.itemView.setOnClickListener {
                 currentAndOtherPriceClickListener.isCurrentAndOtherPriceClicked(this)

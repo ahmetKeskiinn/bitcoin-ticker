@@ -38,7 +38,8 @@ class AddFavoriteOnFB @Inject constructor(
                             )
                         ).addOnSuccessListener { success ->
                             addFavoriteOnDB.execute(
-                                viewModel, AddFavoriteOnDB.Params(
+                                viewModel,
+                                AddFavoriteOnDB.Params(
                                     FavoriteModel(
                                         id = success.id,
                                         favCoinName = input.favoriteModel.favCoinName,

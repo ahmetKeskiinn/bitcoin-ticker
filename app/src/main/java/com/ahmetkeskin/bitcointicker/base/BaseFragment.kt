@@ -15,7 +15,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.navigation.fragment.findNavController
 
-
 abstract class BaseFragment<B : ViewDataBinding, VM : BaseViewModel>(
     @LayoutRes private val layoutId: Int
 ) : Fragment() {
@@ -26,7 +25,7 @@ abstract class BaseFragment<B : ViewDataBinding, VM : BaseViewModel>(
     abstract fun onInitDataBinding()
     private var viewModelStoreOwner: ViewModelStoreOwner? = null
 
-    //private val viewModel by viewModels<VM>()
+    // private val viewModel by viewModels<VM>()
     lateinit var viewModel: VM
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

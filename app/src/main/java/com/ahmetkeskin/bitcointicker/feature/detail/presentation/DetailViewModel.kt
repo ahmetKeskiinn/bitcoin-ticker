@@ -1,17 +1,14 @@
 package com.ahmetkeskin.bitcointicker.feature.detail.presentation
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ahmetkeskin.bitcointicker.base.BaseViewModel
-import com.ahmetkeskin.bitcointicker.base.common.data.db.FavoriteModel
 import com.ahmetkeskin.bitcointicker.base.common.domain.firebase.AddFavoriteOnFB
 import com.ahmetkeskin.bitcointicker.base.common.domain.firebase.RemoveFavoriteOnFB
 import com.ahmetkeskin.bitcointicker.base.common.domain.room.CheckFavoriteOnDB
 import com.ahmetkeskin.bitcointicker.feature.detail.domain.GetDetail
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
-import kotlin.math.log
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(

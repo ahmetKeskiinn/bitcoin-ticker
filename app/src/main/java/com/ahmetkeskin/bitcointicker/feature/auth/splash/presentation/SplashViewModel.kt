@@ -19,6 +19,5 @@ class SplashViewModel @Inject constructor(
         _getAuthenticationResponse
     fun getUserSettings() = getLocalSettings.execute(this, Unit)
 
-    fun auth(userModel: UserModel)= authentication.execute(this, Authentication.Params(userModel))
-
+    fun auth(userModel: UserModel) = authentication.execute(this, Authentication.Params(userModel))
 }

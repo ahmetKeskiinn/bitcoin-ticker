@@ -8,4 +8,4 @@ data class CryptoIconItem(
     val asset_id: String? = null,
     @SerializedName("url")
     val url: String? = null
-): Serializable
+) : Serializable

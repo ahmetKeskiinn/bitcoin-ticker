@@ -14,7 +14,6 @@ import com.ahmetkeskin.bitcointicker.feature.home.data.response.CryptoIconItem
 import com.ahmetkeskin.bitcointicker.feature.home.presentation.CurrencyClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class FavoriteFragment : BaseFragment<FragmentFavoriteBinding, FavoriteViewModel>(
     layoutId = R.layout.fragment_favorite
@@ -64,9 +63,12 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding, FavoriteViewModel
     }
 
     private fun getSearchedCurrency(searchQuery: String) {
-        viewModel.searchCurrency(searchQuery).observe(viewLifecycleOwner, Observer {
-            adapter?.submitList(convertFavoriteLists(it))
-        })
+        viewModel.searchCurrency(searchQuery).observe(
+            viewLifecycleOwner,
+            Observer {
+                adapter?.submitList(convertFavoriteLists(it))
+            }
+        )
     }
 
     private fun convertFavoriteLists(list: List<FavoriteModel>?): ArrayList<CryptoIconItem> {
@@ -83,8 +85,11 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding, FavoriteViewModel
     }
 
     private fun getAllFavorites() {
-        viewModel.getFavorites().observe(viewLifecycleOwner, Observer {
-            adapter?.submitList(convertFavoriteLists(it))
-        })
+        viewModel.getFavorites().observe(
+            viewLifecycleOwner,
+            Observer {
+                adapter?.submitList(convertFavoriteLists(it))
+            }
+        )
     }
 }

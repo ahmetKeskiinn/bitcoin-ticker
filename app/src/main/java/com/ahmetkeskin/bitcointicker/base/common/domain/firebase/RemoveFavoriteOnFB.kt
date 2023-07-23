@@ -55,7 +55,6 @@ class RemoveFavoriteOnFB @Inject constructor(
                                 }
                         }
                     }
-
                 }
             }
         }

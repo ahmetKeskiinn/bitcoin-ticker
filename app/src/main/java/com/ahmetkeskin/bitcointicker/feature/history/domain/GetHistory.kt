@@ -1,6 +1,5 @@
 package com.ahmetkeskin.bitcointicker.feature.history.domain
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.ahmetkeskin.bitcointicker.base.BaseUseCase

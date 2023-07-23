@@ -10,6 +10,5 @@ class DetailRepositoryImpl @Inject constructor(
     override suspend fun getDetail(id: String?) = dataSource.getDetail(id)
 
     override suspend fun addFavorite() {
-
     }
 }

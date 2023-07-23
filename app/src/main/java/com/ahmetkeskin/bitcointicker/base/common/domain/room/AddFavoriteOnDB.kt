@@ -20,7 +20,7 @@ class AddFavoriteOnDB @Inject constructor(
 
     override fun execute(viewModel: BaseViewModel, input: Params?) {
         input?.let {
-            viewModel.viewModelScope.launch(Dispatchers.IO){
+            viewModel.viewModelScope.launch(Dispatchers.IO) {
                 room.insertFavorite(it.favoriteModel)
                 Log.d("TAG", "execute: " + room.checkFav(input.favoriteModel.favCoinName).toString())
             }

@@ -51,5 +51,4 @@ class NetworkModule {
     @Singleton
     @Provides
     fun provideGson(): Gson = Gson()
-
 }

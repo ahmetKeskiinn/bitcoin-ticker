@@ -23,23 +23,29 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>(
     }
 
     private fun initUI() {
-        viewModel.getUserSettings().observe(viewLifecycleOwner, Observer {
-            if (it.password != null || it.email != null) {
-                changeFlowForAuthentication(UserModel(email = it.email, password = it.password))
-            } else {
-                goLogin()
+        viewModel.getUserSettings().observe(
+            viewLifecycleOwner,
+            Observer {
+                if (it.password != null || it.email != null) {
+                    changeFlowForAuthentication(UserModel(email = it.email, password = it.password))
+                } else {
+                    goLogin()
+                }
             }
-        })
+        )
     }
 
     private fun changeFlowForAuthentication(userModel: UserModel) {
-        viewModel.auth(userModel).observe(viewLifecycleOwner, Observer {
-            if (it == true) {
-                goHome()
-            } else {
-                goLogin()
+        viewModel.auth(userModel).observe(
+            viewLifecycleOwner,
+            Observer {
+                if (it == true) {
+                    goHome()
+                } else {
+                    goLogin()
+                }
             }
-        })
+        )
     }
 
     private fun goLogin() {

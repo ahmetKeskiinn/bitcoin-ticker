@@ -24,7 +24,7 @@ class CheckFavoriteOnDB @Inject constructor(
     ): MutableLiveData<List<FavoriteModel>?> {
         return MutableLiveData<List<FavoriteModel>?>().apply {
             input?.let {
-                viewModel.viewModelScope.launch(Dispatchers.IO){
+                viewModel.viewModelScope.launch(Dispatchers.IO) {
                     postValue(room.checkFav(name = it.favName))
                 }
             }
