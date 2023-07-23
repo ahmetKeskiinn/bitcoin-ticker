@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_nav"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.ahmetkeskin.bitcointicker.feature.home.presentation.HomeFragment"
+        android:label="@string/home_fragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_navigation_home_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_favorite"
+        android:name="com.ahmetkeskin.bitcointicker.feature.favorite.presentation.FavoriteFragment"
+        android:label="@string/favorite_fragment" >
+        <action
+            android:id="@+id/action_navigation_favorite_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.ahmetkeskin.bitcointicker.feature.detail.presentation.DetailFragment"
+        android:label="DetailFragment">
+        <action
+            android:id="@+id/action_detailFragment_to_homeFragment"
+            app:destination="@id/navigation_home" />
+        <argument
+            android:name="currency"
+            android:defaultValue="@null"
+            app:argType="com.ahmetkeskin.bitcointicker.feature.home.data.response.CryptoIconItem"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_detailFragment_to_historyFragment"
+            app:destination="@id/historyFragment" />
+        <argument
+            android:name="fromFavorite"
+            app:argType="boolean"/>
+        <action
+            android:id="@+id/action_detailFragment_to_navigation_favorite"
+            app:destination="@id/navigation_favorite" />
+    </fragment>
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.ahmetkeskin.bitcointicker.feature.history.presentation.HistoryFragment"
+        android:label="HistoryFragment">
+        <argument
+            android:name="historyItem"
+            android:defaultValue="@null"
+            app:argType="com.ahmetkeskin.bitcointicker.feature.detail.data.response.CurrentAndOtherPriceItem"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_historyFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+        <argument
+            android:name="isFromFavorite"
+            app:argType="boolean"/>
+    </fragment>
+</navigation>

@@ -22,7 +22,6 @@ import com.ahmetkeskin.bitcointicker.feature.home.data.response.CryptoIconItem
 import com.google.android.material.tabs.TabLayout
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class HistoryFragment : BaseFragment<FragmentHistoryBinding, HistoryViewModel>(
     layoutId = R.layout.fragment_history
@@ -66,7 +65,8 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding, HistoryViewModel>(
                 currency = CryptoIconItem(
                     args.historyItem?.currentItem,
                     args.historyItem?.currentItemUrl
-                )
+                ),
+                args.isFromFavorite
             )
             Navigation.findNavController(binding.root).navigate(action)
         }

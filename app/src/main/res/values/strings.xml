@@ -56,4 +56,6 @@
     <string name="empty_email">Email cannot be empty!</string>
     <string name="email_pattern">E-mail pattern is invalid!</string>
     <string name="something_went_wrong">Somethings went wrong, please try again later!</string>
+    <string name="home_fragment">Home</string>
+    <string name="favorite_fragment">Favorite</string>
 </resources>

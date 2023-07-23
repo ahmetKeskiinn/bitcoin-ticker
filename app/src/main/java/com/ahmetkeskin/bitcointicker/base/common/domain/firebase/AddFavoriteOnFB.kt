@@ -42,7 +42,8 @@ class AddFavoriteOnFB @Inject constructor(
                                     FavoriteModel(
                                         id = success.id,
                                         favCoinName = input.favoriteModel.favCoinName,
-                                        favCoinRate = input.favoriteModel.favCoinRate
+                                        favCoinRate = input.favoriteModel.favCoinRate,
+                                        url = input.favoriteModel.url
                                     )
                                 )
                             )

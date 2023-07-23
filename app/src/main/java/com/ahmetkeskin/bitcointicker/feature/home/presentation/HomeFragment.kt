@@ -6,6 +6,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import com.ahmetkeskin.bitcointicker.R
 import com.ahmetkeskin.bitcointicker.base.BaseFragment
+import com.ahmetkeskin.bitcointicker.base.common.CurrencyListAdapter
 import com.ahmetkeskin.bitcointicker.databinding.FragmentHomeBinding
 import com.ahmetkeskin.bitcointicker.feature.home.data.response.CryptoIconItem
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,7 +41,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     private fun initRv() {
         adapter = CurrencyListAdapter(object : CurrencyClickListener {
             override fun isCurrencyClicked(item: CryptoIconItem) {
-                val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(item)
+                val action = HomeFragmentDirections.actionNavigationHomeToDetailFragment(item, false)
                 Navigation.findNavController(binding.root).navigate(action)
             }
         })
