@@ -11,4 +11,6 @@ interface FavRepository {
     suspend fun deleteFavorite(model: FavoriteModel)
 
     suspend fun checkFav(name: String): List<FavoriteModel>
+
+    suspend fun searchFav(name: String): List<FavoriteModel>
 }

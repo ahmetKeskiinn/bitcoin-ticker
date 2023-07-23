@@ -14,6 +14,9 @@ interface FavoriteDao {
     @Query("SELECT * FROM fav_db WHERE favCoinName LIKE :searchQuery")
     fun checkDatabase(searchQuery: String): List<FavoriteModel>
 
+    @Query("SELECT * FROM fav_db WHERE favCoinName LIKE '%' || :searchQuery || '%'")
+    fun searchFavorite(searchQuery: String): List<FavoriteModel>
+
     @Delete
     suspend fun deleteFavorite(fav: FavoriteModel)
 }
