@@ -4,10 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.ahmetkeskin.bitcointicker.base.BaseUseCase
 import com.ahmetkeskin.bitcointicker.base.BaseViewModel
-import com.ahmetkeskin.bitcointicker.base.FAVORITE_CURRENCY
-import com.ahmetkeskin.bitcointicker.base.FAVORITE_CURRENCY_RATE
 import com.ahmetkeskin.bitcointicker.base.common.data.db.FavoriteModel
 import com.ahmetkeskin.bitcointicker.base.common.domain.room.AddFavoriteOnDB
+import com.ahmetkeskin.bitcointicker.base.extensions.FAVORITE_CURRENCY
+import com.ahmetkeskin.bitcointicker.base.extensions.FAVORITE_CURRENCY_RATE
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch

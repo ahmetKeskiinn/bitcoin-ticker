@@ -9,12 +9,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.ahmetkeskin.bitcointicker.R
-import com.ahmetkeskin.bitcointicker.base.EMPTY
-import com.ahmetkeskin.bitcointicker.base.loadImage
-import com.ahmetkeskin.bitcointicker.base.twoLetterAfterComma
+import com.ahmetkeskin.bitcointicker.base.extensions.EMPTY
+import com.ahmetkeskin.bitcointicker.base.extensions.loadImage
+import com.ahmetkeskin.bitcointicker.base.extensions.twoLetterAfterComma
 import com.ahmetkeskin.bitcointicker.feature.history.data.pager.PagerListingItem
 
-class HistoryAdapter() : ListAdapter<PagerListingItem, HistoryAdapter.CityHolder>(
+class HistoryAdapter : ListAdapter<PagerListingItem, HistoryAdapter.CityHolder>(
     diffCallback
 ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CityHolder {

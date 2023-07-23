@@ -1,6 +1,5 @@
 package com.ahmetkeskin.bitcointicker.feature.auth.register.presentation
 
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.ahmetkeskin.bitcointicker.R
@@ -70,17 +69,16 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterViewModel
         viewModel.register(
             userModel
         ).observe(
-            viewLifecycleOwner,
-            Observer {
-                if (it == true) {
-                    Navigation.findNavController(binding.root)
-                        .navigate(R.id.action_registerFragment_to_loginFragment)
-                } else {
-                    showToast(getString(R.string.something_went_wrong))
-                }
-                hideProgress()
+            viewLifecycleOwner
+        ) {
+            if (it == true) {
+                Navigation.findNavController(binding.root)
+                    .navigate(R.id.action_registerFragment_to_loginFragment)
+            } else {
+                showToast(getString(R.string.something_went_wrong))
             }
-        )
+            hideProgress()
+        }
     }
 
     private fun checkEmail(email: String): Boolean {

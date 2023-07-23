@@ -1,6 +1,5 @@
 package com.ahmetkeskin.bitcointicker.base.common.domain.room
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.ahmetkeskin.bitcointicker.base.BaseUseCase
 import com.ahmetkeskin.bitcointicker.base.BaseViewModel
@@ -22,7 +21,6 @@ class AddFavoriteOnDB @Inject constructor(
         input?.let {
             viewModel.viewModelScope.launch(Dispatchers.IO) {
                 room.insertFavorite(it.favoriteModel)
-                Log.d("TAG", "execute: " + room.checkFav(input.favoriteModel.favCoinName).toString())
             }
         }
     }

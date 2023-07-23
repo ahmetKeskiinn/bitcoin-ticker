@@ -14,8 +14,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.setPadding
 import androidx.core.view.updateLayoutParams
 import com.ahmetkeskin.bitcointicker.R
-import com.ahmetkeskin.bitcointicker.base.toDp
-import com.ahmetkeskin.bitcointicker.base.toPx
+import com.ahmetkeskin.bitcointicker.base.extensions.toDp
+import com.ahmetkeskin.bitcointicker.base.extensions.toPx
 import com.ahmetkeskin.bitcointicker.components.buttonattributes.Gravity
 import com.ahmetkeskin.bitcointicker.components.buttonattributes.TickerButtonAttributes
 

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.ahmetkeskin.bitcointicker.R
-import com.ahmetkeskin.bitcointicker.base.loadImage
+import com.ahmetkeskin.bitcointicker.base.extensions.loadImage
 import com.ahmetkeskin.bitcointicker.feature.detail.data.response.CurrentAndOtherPriceItem
 
 class CurrentAndOtherPriceListAdapter(

@@ -1,4 +1,4 @@
-package com.ahmetkeskin.bitcointicker.base
+package com.ahmetkeskin.bitcointicker.base.extensions
 
 import android.widget.ImageView
 import com.bumptech.glide.Glide

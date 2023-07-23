@@ -18,7 +18,7 @@ class DetailViewModel @Inject constructor(
     private val removeFavoriteOnFB: RemoveFavoriteOnFB
 ) : BaseViewModel() {
 
-    private val _isFollowing = MutableLiveData<Boolean>(false)
+    private val _isFollowing = MutableLiveData(false)
     val isFollowing: LiveData<Boolean> = _isFollowing
     fun checkFollowing(params: CheckFavoriteOnDB.Params) =
         checkFavoriteOnDB.execute(this, params)

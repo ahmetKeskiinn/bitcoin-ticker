@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.ahmetkeskin.bitcointicker.base.BaseUseCase
 import com.ahmetkeskin.bitcointicker.base.BaseViewModel
-import com.ahmetkeskin.bitcointicker.base.EMPTY
+import com.ahmetkeskin.bitcointicker.base.extensions.EMPTY
 import com.ahmetkeskin.bitcointicker.feature.auth.splash.data.response.UserModel
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch

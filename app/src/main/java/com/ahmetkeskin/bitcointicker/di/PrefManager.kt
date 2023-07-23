@@ -1,8 +1,8 @@
 package com.ahmetkeskin.bitcointicker.di
 
 import android.content.Context
-import com.ahmetkeskin.bitcointicker.base.get
-import com.ahmetkeskin.bitcointicker.base.set
+import com.ahmetkeskin.bitcointicker.base.extensions.get
+import com.ahmetkeskin.bitcointicker.base.extensions.set
 
 class PrefManager(context: Context) {
 

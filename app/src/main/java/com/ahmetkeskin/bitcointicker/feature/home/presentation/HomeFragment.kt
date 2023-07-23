@@ -1,8 +1,6 @@
 package com.ahmetkeskin.bitcointicker.feature.home.presentation
 
-import android.util.Log
 import androidx.core.widget.doAfterTextChanged
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
@@ -18,7 +16,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     layoutId = R.layout.fragment_home
 ) {
     private var adapter: CurrencyListAdapter? = null
-    var currencyList: List<CryptoIconItem>? = null
+    private var currencyList: List<CryptoIconItem>? = null
     override fun onInitDataBinding() {
         activity?.let {
             viewModel = ViewModelProvider(it)[HomeViewModel::class.java]
@@ -52,24 +50,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
         currencyList?.forEach {
             if (it.asset_id?.lowercase()?.contains(searchQuery.lowercase()) == true) {
                 newCurrencyList.add(it)
-            } else {
-                Log.d("TAG", "searchWithQuery: " + it.asset_id)
             }
         }
-        Log.d("TAG", "searchWithQuery: " + newCurrencyList)
         adapter?.submitList(newCurrencyList)
     }
     private fun getCrypto() {
         showProgress()
         // print(0/0)
-        viewModel.getCrypto()?.observe(
-            viewLifecycleOwner,
-            Observer { list ->
-                currencyList = list
-                adapter?.submitList(list)
-                hideProgress()
-            }
-        )
+        viewModel.getCrypto().observe(
+            viewLifecycleOwner
+        ) { list ->
+            currencyList = list
+            adapter?.submitList(list)
+            hideProgress()
+        }
     }
 
     private fun initRv() {

@@ -1,4 +1,4 @@
-package com.ahmetkeskin.bitcointicker.base
+package com.ahmetkeskin.bitcointicker.base.extensions
 
 import android.content.res.Resources
 

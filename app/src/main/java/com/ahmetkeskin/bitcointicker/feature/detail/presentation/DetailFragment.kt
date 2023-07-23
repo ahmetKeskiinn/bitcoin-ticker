@@ -1,20 +1,19 @@
 package com.ahmetkeskin.bitcointicker.feature.detail.presentation
 
 import androidx.core.widget.doAfterTextChanged
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ahmetkeskin.bitcointicker.R
 import com.ahmetkeskin.bitcointicker.base.BaseFragment
-import com.ahmetkeskin.bitcointicker.base.EMPTY
-import com.ahmetkeskin.bitcointicker.base.USD
 import com.ahmetkeskin.bitcointicker.base.common.data.db.FavoriteModel
 import com.ahmetkeskin.bitcointicker.base.common.domain.firebase.AddFavoriteOnFB
 import com.ahmetkeskin.bitcointicker.base.common.domain.firebase.RemoveFavoriteOnFB
 import com.ahmetkeskin.bitcointicker.base.common.domain.room.CheckFavoriteOnDB
-import com.ahmetkeskin.bitcointicker.base.loadImage
+import com.ahmetkeskin.bitcointicker.base.extensions.EMPTY
+import com.ahmetkeskin.bitcointicker.base.extensions.USD
+import com.ahmetkeskin.bitcointicker.base.extensions.loadImage
 import com.ahmetkeskin.bitcointicker.databinding.FragmentDetailBinding
 import com.ahmetkeskin.bitcointicker.feature.detail.data.response.CurrentAndOtherPriceItem
 import com.ahmetkeskin.bitcointicker.feature.detail.domain.GetDetail
@@ -48,29 +47,28 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>(
         showProgress()
         viewModel.getDetail(GetDetail.Params(args.currency?.asset_id))
             ?.observe(
-                viewLifecycleOwner,
-                Observer {
-                    val rateList = arrayListOf<CurrentAndOtherPriceItem>()
-                    it.rates?.forEach { item ->
-                        if (item?.asset_id_quote == USD) {
-                            currentCurrencyWithUSD = item.rate.toString()
-                            binding.currencyName.text =
-                                binding.currencyName.text.toString() + " " + item.rate.toString() + " " + USD
-                        }
-                        rateList.add(
-                            CurrentAndOtherPriceItem(
-                                args.currency?.asset_id,
-                                args.currency?.url,
-                                item?.asset_id_quote,
-                                item?.rate
-                            )
-                        )
+                viewLifecycleOwner
+            ) {
+                val rateList = arrayListOf<CurrentAndOtherPriceItem>()
+                it.rates?.forEach { item ->
+                    if (item?.asset_id_quote == USD) {
+                        currentCurrencyWithUSD = item.rate.toString()
+                        binding.currencyName.text =
+                            binding.currencyName.text.toString() + " " + item.rate.toString() + " " + USD
                     }
-                    currencyList = rateList
-                    adapter?.submitList(rateList)
-                    hideProgress()
+                    rateList.add(
+                        CurrentAndOtherPriceItem(
+                            args.currency?.asset_id,
+                            args.currency?.url,
+                            item?.asset_id_quote,
+                            item?.rate
+                        )
+                    )
                 }
-            )
+                currencyList = rateList
+                adapter?.submitList(rateList)
+                hideProgress()
+            }
     }
     private fun initTextWatcher() {
         binding.searchEditText.text.clear()
@@ -135,15 +133,14 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>(
 
     private fun observeViewModel() {
         viewModel.isFollowing.observe(
-            viewLifecycleOwner,
-            Observer {
-                if (it) {
-                    changeStarIconBg(R.drawable.ic_followed)
-                } else {
-                    changeStarIconBg(R.drawable.ic_unfollowed)
-                }
+            viewLifecycleOwner
+        ) {
+            if (it) {
+                changeStarIconBg(R.drawable.ic_followed)
+            } else {
+                changeStarIconBg(R.drawable.ic_unfollowed)
             }
-        )
+        }
     }
 
     private fun checkCurrencyInDb() {
@@ -152,13 +149,12 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>(
                 args.currency?.asset_id ?: EMPTY
             )
         ).observe(
-            viewLifecycleOwner,
-            Observer {
-                it?.let {
-                    viewModel.setFollowingState(it.isEmpty().not())
-                }
+            viewLifecycleOwner
+        ) {
+            it?.let {
+                viewModel.setFollowingState(it.isEmpty().not())
             }
-        )
+        }
     }
 
     private fun manageFavorite() {
@@ -180,12 +176,11 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>(
                 )
             )
         ).observe(
-            viewLifecycleOwner,
-            Observer {
-                viewModel.setFollowingState(it ?: false)
-                hideProgress()
-            }
-        )
+            viewLifecycleOwner
+        ) {
+            viewModel.setFollowingState(it ?: false)
+            hideProgress()
+        }
     }
 
     private fun removeFavorite() {
@@ -198,12 +193,11 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>(
                 )
             )
         ).observe(
-            viewLifecycleOwner,
-            Observer {
-                hideProgress()
-                viewModel.setFollowingState(it?.not() ?: true)
-            }
-        )
+            viewLifecycleOwner
+        ) {
+            hideProgress()
+            viewModel.setFollowingState(it?.not() ?: true)
+        }
     }
 
     private fun changeStarIconBg(image: Int) = binding.followIcon.setImageResource(image)

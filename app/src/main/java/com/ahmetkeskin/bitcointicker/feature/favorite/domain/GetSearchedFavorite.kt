@@ -19,7 +19,7 @@ class GetSearchedFavorite @Inject constructor(
 
     override fun execute(
         viewModel: BaseViewModel,
-        input: GetSearchedFavorite.Params?
+        input: Params?
     ): MutableLiveData<List<FavoriteModel>?> {
         return MutableLiveData<List<FavoriteModel>?>().apply {
             input?.let {

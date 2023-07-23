@@ -1,4 +1,4 @@
-package com.ahmetkeskin.bitcointicker.base
+package com.ahmetkeskin.bitcointicker.base.extensions
 
 import android.content.SharedPreferences
 import com.google.gson.Gson
@@ -16,7 +16,7 @@ inline fun <reified T> SharedPreferences.get(key: String): T? {
         Long::class -> this.getLong(key, 0) as T
         String::class -> this.getString(key, null) as T
         else -> {
-            Gson().fromJson(getString(key, ""), T::class.java)
+            Gson().fromJson(getString(key, EMPTY), T::class.java)
         }
     }
 }

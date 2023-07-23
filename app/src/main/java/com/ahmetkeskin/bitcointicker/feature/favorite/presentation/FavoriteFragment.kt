@@ -1,7 +1,6 @@
 package com.ahmetkeskin.bitcointicker.feature.favorite.presentation
 
 import androidx.core.widget.doAfterTextChanged
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -64,11 +63,10 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding, FavoriteViewModel
 
     private fun getSearchedCurrency(searchQuery: String) {
         viewModel.searchCurrency(searchQuery).observe(
-            viewLifecycleOwner,
-            Observer {
-                adapter?.submitList(convertFavoriteLists(it))
-            }
-        )
+            viewLifecycleOwner
+        ) {
+            adapter?.submitList(convertFavoriteLists(it))
+        }
     }
 
     private fun convertFavoriteLists(list: List<FavoriteModel>?): ArrayList<CryptoIconItem> {
@@ -86,10 +84,9 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding, FavoriteViewModel
 
     private fun getAllFavorites() {
         viewModel.getFavorites().observe(
-            viewLifecycleOwner,
-            Observer {
-                adapter?.submitList(convertFavoriteLists(it))
-            }
-        )
+            viewLifecycleOwner
+        ) {
+            adapter?.submitList(convertFavoriteLists(it))
+        }
     }
 }

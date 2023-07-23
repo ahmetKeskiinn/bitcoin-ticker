@@ -1,4 +1,4 @@
-package com.ahmetkeskin.bitcointicker.base
+package com.ahmetkeskin.bitcointicker.base.extensions
 
 const val EMPTY: String = ""
 const val DATE_SUFFIX: String = "T00:00:00"

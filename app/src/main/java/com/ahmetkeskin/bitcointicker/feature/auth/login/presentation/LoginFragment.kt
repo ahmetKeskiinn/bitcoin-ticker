@@ -1,7 +1,6 @@
 package com.ahmetkeskin.bitcointicker.feature.auth.login.presentation
 
 import android.content.Intent
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.ahmetkeskin.bitcointicker.MainActivity
@@ -103,17 +102,16 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(
         viewModel.authentication(
             userModel
         ).observe(
-            viewLifecycleOwner,
-            Observer {
-                if (it == true) {
-                    saveUserSettings(userModel)
-                    val intent = Intent(activity, MainActivity::class.java)
-                    startActivity(intent)
-                    activity?.finish()
-                }
-                hideProgress()
+            viewLifecycleOwner
+        ) {
+            if (it == true) {
+                saveUserSettings(userModel)
+                val intent = Intent(activity, MainActivity::class.java)
+                startActivity(intent)
+                activity?.finish()
             }
-        )
+            hideProgress()
+        }
     }
 
     private fun saveUserSettings(userModel: UserModel) {

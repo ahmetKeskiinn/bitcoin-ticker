@@ -1,7 +1,6 @@
 package com.ahmetkeskin.bitcointicker.feature.auth.splash.presentation
 
 import android.content.Intent
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.ahmetkeskin.bitcointicker.MainActivity
@@ -24,28 +23,26 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>(
 
     private fun initUI() {
         viewModel.getUserSettings().observe(
-            viewLifecycleOwner,
-            Observer {
-                if (it.password != null || it.email != null) {
-                    changeFlowForAuthentication(UserModel(email = it.email, password = it.password))
-                } else {
-                    goLogin()
-                }
+            viewLifecycleOwner
+        ) {
+            if (it.password != null || it.email != null) {
+                changeFlowForAuthentication(UserModel(email = it.email, password = it.password))
+            } else {
+                goLogin()
             }
-        )
+        }
     }
 
     private fun changeFlowForAuthentication(userModel: UserModel) {
         viewModel.auth(userModel).observe(
-            viewLifecycleOwner,
-            Observer {
-                if (it == true) {
-                    goHome()
-                } else {
-                    goLogin()
-                }
+            viewLifecycleOwner
+        ) {
+            if (it == true) {
+                goHome()
+            } else {
+                goLogin()
             }
-        )
+        }
     }
 
     private fun goLogin() {

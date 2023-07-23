@@ -1,13 +1,12 @@
 package com.ahmetkeskin.bitcointicker.base.extensions
 
-import android.util.Log
-import com.ahmetkeskin.bitcointicker.base.DATE_SUFFIX
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 
+const val DATE_PATTERN = "yyyy-MM-dd'T'HH:mm:ss"
 fun getCurrentDate(): String {
-    val f = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+    val f = SimpleDateFormat(DATE_PATTERN)
     return f.format(Date())
 }
 
@@ -16,7 +15,7 @@ fun getCurrentDateWithSuffix(): String {
 }
 
 fun getMinusForCurrentDate(minusDate: Int? = 1): String {
-    val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+    val formatter = SimpleDateFormat(DATE_PATTERN)
     val cal = Calendar.getInstance()
     cal.time = Date()
     if (minusDate != null) {
@@ -24,6 +23,5 @@ fun getMinusForCurrentDate(minusDate: Int? = 1): String {
     } else {
         cal.add(Calendar.DATE, -1)
     }
-    Log.d("TAG", "getMinusForCurrentDate: " + formatter.format(cal.time) + DATE_SUFFIX)
     return formatter.format(cal.time)
 }

@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ahmetkeskin.bitcointicker.R
 import com.ahmetkeskin.bitcointicker.base.BaseFragment
-import com.ahmetkeskin.bitcointicker.base.EMPTY
+import com.ahmetkeskin.bitcointicker.base.extensions.EMPTY
 import com.ahmetkeskin.bitcointicker.databinding.FragmentPagerBinding
 import com.ahmetkeskin.bitcointicker.feature.history.data.pager.PagerListingItem
 import com.ahmetkeskin.bitcointicker.feature.history.data.pager.PagerType
@@ -27,9 +27,6 @@ class PagerFragment(
     BaseFragment<FragmentPagerBinding, HistoryViewModel>(
         layoutId = R.layout.fragment_pager
     ) {
-    companion object {
-        private const val MAPPING = "{ x: 'x', value: 'value' }"
-    }
 
     override fun onInitDataBinding() {
         activity?.let {

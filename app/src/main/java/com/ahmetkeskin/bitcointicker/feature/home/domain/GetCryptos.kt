@@ -13,7 +13,7 @@ class GetCryptos @Inject constructor(
     private val detailRepository: HomeRepository
 ) : BaseUseCase<MutableLiveData<List<CryptoIconItem>>, Unit>() {
 
-    override fun execute(viewModel: BaseViewModel, input: Unit?): MutableLiveData<List<CryptoIconItem>>? {
+    override fun execute(viewModel: BaseViewModel, input: Unit?): MutableLiveData<List<CryptoIconItem>> {
         return MutableLiveData<List<CryptoIconItem>>().apply {
             viewModel.viewModelScope.launch {
                 value =

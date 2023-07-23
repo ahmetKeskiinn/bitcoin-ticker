@@ -27,7 +27,9 @@ abstract class BaseFragment<B : ViewDataBinding, VM : BaseViewModel>(
 
     // private val viewModel by viewModels<VM>()
     lateinit var viewModel: VM
-
+    companion object {
+        private const val PROGRESS = "PROGRESS"
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
@@ -73,7 +75,7 @@ abstract class BaseFragment<B : ViewDataBinding, VM : BaseViewModel>(
     }
     open fun showProgress() {
         progressDialog = BaseProgressDialog()
-        progressDialog?.show(childFragmentManager, "PROGRESS")
+        progressDialog?.show(childFragmentManager, PROGRESS)
     }
 
     open fun hideProgress() {

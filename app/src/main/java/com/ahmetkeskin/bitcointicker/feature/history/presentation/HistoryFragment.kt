@@ -9,7 +9,7 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.listItems
 import com.ahmetkeskin.bitcointicker.R
 import com.ahmetkeskin.bitcointicker.base.BaseFragment
-import com.ahmetkeskin.bitcointicker.base.EMPTY
+import com.ahmetkeskin.bitcointicker.base.extensions.EMPTY
 import com.ahmetkeskin.bitcointicker.base.extensions.getCurrentDate
 import com.ahmetkeskin.bitcointicker.base.extensions.getMinusForCurrentDate
 import com.ahmetkeskin.bitcointicker.databinding.FragmentHistoryBinding
@@ -35,7 +35,7 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding, HistoryViewModel>(
     }
 
     private var currentOffset: Int? = null
-    private var currentPeriod = "1MIN"
+    private var currentPeriod = PeriodEnum.ONE_MIN.period
 
     override fun onResume() {
         super.onResume()
@@ -84,6 +84,7 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding, HistoryViewModel>(
             )
         )
     }
+
     private fun observeViewModel() {
         viewModel.historyLiveData.observe(
             viewLifecycleOwner,
