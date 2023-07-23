@@ -8,6 +8,12 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ahmetkeskin.bitcointicker.R
 import com.ahmetkeskin.bitcointicker.base.BaseFragment
+import com.ahmetkeskin.bitcointicker.base.EMPTY
+import com.ahmetkeskin.bitcointicker.base.USD
+import com.ahmetkeskin.bitcointicker.base.common.data.db.FavoriteModel
+import com.ahmetkeskin.bitcointicker.base.common.domain.firebase.AddFavoriteOnFB
+import com.ahmetkeskin.bitcointicker.base.common.domain.firebase.RemoveFavoriteOnFB
+import com.ahmetkeskin.bitcointicker.base.common.domain.room.CheckFavoriteOnDB
 import com.ahmetkeskin.bitcointicker.base.loadImage
 import com.ahmetkeskin.bitcointicker.databinding.FragmentDetailBinding
 import com.ahmetkeskin.bitcointicker.feature.detail.data.response.CurrentAndOtherPriceItem
@@ -21,7 +27,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>(
     val args: DetailFragmentArgs by navArgs()
 
     private var adapter: CurrentAndOtherPriceListAdapter? = null
-
+    private var currentCurrencyWithUSD = EMPTY
     override fun onInitDataBinding() {
         activity?.let {
             viewModel = ViewModelProvider(it)[DetailViewModel::class.java]
@@ -30,17 +36,23 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>(
 
     override fun onResume() {
         super.onResume()
+        checkCurrencyInDb()
         initUI()
         initRv()
         initClickListener()
+        observeViewModel()
     }
 
     private fun getCryptoDetail() {
         viewModel?.getDetail(GetDetail.Params(args.currency?.asset_id))
             ?.observe(viewLifecycleOwner, Observer {
-                Log.d("TAG", "getCrypto: " + it.rates.toString())
                 val rateList = arrayListOf<CurrentAndOtherPriceItem>()
                 it.rates?.forEach { item ->
+                    if (item?.asset_id_quote == USD) {
+                        currentCurrencyWithUSD = item.rate.toString()
+                        binding.currencyName.text =
+                            binding.currencyName.text.toString() + " " + item.rate.toString() + " " + USD
+                    }
                     rateList.add(
                         CurrentAndOtherPriceItem(
                             args.currency?.asset_id,
@@ -72,12 +84,75 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>(
         binding.currencyName.text = args.currency?.asset_id
         backPressed(R.id.action_detailFragment_to_homeFragment)
     }
+
     private fun initClickListener() {
         binding.back.setOnClickListener {
-            Navigation.findNavController(binding.root).navigate(R.id.action_detailFragment_to_homeFragment)
+            Navigation.findNavController(binding.root)
+                .navigate(R.id.action_detailFragment_to_homeFragment)
+        }
+        binding.followIcon.setOnClickListener {
+            manageFavorite()
         }
     }
-    private fun addFavorite() {
-        viewModel?.addFavorite()
+
+    private fun observeViewModel() {
+        viewModel.isFollowing.observe(viewLifecycleOwner, Observer {
+            if (it) {
+                changeStarIconBg(R.drawable.ic_followed)
+            } else {
+                changeStarIconBg(R.drawable.ic_unfollowed)
+            }
+        })
     }
+
+    private fun checkCurrencyInDb() {
+        viewModel.checkFollowing(
+            CheckFavoriteOnDB.Params(
+                args.currency?.asset_id ?: EMPTY
+            )
+        ).observe(viewLifecycleOwner, Observer {
+            Log.d("TAG", "checkCurrencyInDb: " + it)
+            it?.let {
+                viewModel.setFollowingState(it.isEmpty().not())
+            }
+        })
+    }
+
+    private fun manageFavorite() {
+        if (viewModel.isFollowing.value == false) {
+            addFavorite()
+        } else {
+            removeFavorite()
+        }
+    }
+
+    private fun addFavorite() {
+        viewModel.addFavorite(
+            AddFavoriteOnFB.Params(
+                FavoriteModel(
+                    favCoinName = args.currency?.asset_id ?: EMPTY,
+                    favCoinRate = currentCurrencyWithUSD
+                )
+            )
+        ).observe(viewLifecycleOwner, Observer {
+            viewModel.setFollowingState(it ?: false)
+
+        })
+    }
+
+    private fun removeFavorite() {
+        viewModel.removeFavorite(
+            RemoveFavoriteOnFB.Params(
+                FavoriteModel(
+                    favCoinName = args.currency?.asset_id ?: EMPTY,
+                    favCoinRate = currentCurrencyWithUSD
+                )
+            )
+        ).observe(viewLifecycleOwner, Observer {
+            Log.d("TAG", "removeFavorite: " + it)
+            viewModel.setFollowingState(it?.not() ?: true)
+        })
+    }
+
+    private fun changeStarIconBg(image: Int) = binding.followIcon.setImageResource(image)
 }
