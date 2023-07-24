@@ -38,17 +38,7 @@ class RemoveFavoriteOnFB @Inject constructor(
                             fireStore.collection(user.uid).document(checkList[0].id ?: EMPTY)
                                 .delete()
                                 .addOnSuccessListener {
-                                    removeFavoriteOnDB.execute(
-                                        viewModel,
-                                        RemoveFavoriteOnDB.Params(
-                                            FavoriteModel(
-                                                id = checkList[0].id,
-                                                favCoinName = params.favoriteModel.favCoinName,
-                                                favCoinRate = params.favoriteModel.favCoinRate,
-                                                url = params.favoriteModel.url
-                                            )
-                                        )
-                                    )
+                                    removeFromDB(viewModel, params, checkList[0].id ?: EMPTY)
                                     value = true
                                 }.addOnFailureListener {
                                     value = false
@@ -58,5 +48,19 @@ class RemoveFavoriteOnFB @Inject constructor(
                 }
             }
         }
+    }
+
+    private fun removeFromDB(viewModel: BaseViewModel, params: Params, id: String) {
+        removeFavoriteOnDB.execute(
+            viewModel,
+            RemoveFavoriteOnDB.Params(
+                FavoriteModel(
+                    id = id,
+                    favCoinName = params.favoriteModel.favCoinName,
+                    favCoinRate = params.favoriteModel.favCoinRate,
+                    url = params.favoriteModel.url
+                )
+            )
+        )
     }
 }

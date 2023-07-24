@@ -37,17 +37,7 @@ class AddFavoriteOnFB @Inject constructor(
                                 FAVORITE_CURRENCY_RATE to params.favoriteModel.favCoinRate
                             )
                         ).addOnSuccessListener { success ->
-                            addFavoriteOnDB.execute(
-                                viewModel,
-                                AddFavoriteOnDB.Params(
-                                    FavoriteModel(
-                                        id = success.id,
-                                        favCoinName = input.favoriteModel.favCoinName,
-                                        favCoinRate = input.favoriteModel.favCoinRate,
-                                        url = input.favoriteModel.url
-                                    )
-                                )
-                            )
+                            addToDB(viewModel, success.id, input)
                             value = true
                         }.addOnFailureListener {
                             value = false
@@ -56,5 +46,19 @@ class AddFavoriteOnFB @Inject constructor(
                 }
             }
         }
+    }
+
+    private fun addToDB(viewModel: BaseViewModel, id: String, input: Params) {
+        addFavoriteOnDB.execute(
+            viewModel,
+            AddFavoriteOnDB.Params(
+                FavoriteModel(
+                    id = id,
+                    favCoinName = input.favoriteModel.favCoinName,
+                    favCoinRate = input.favoriteModel.favCoinRate,
+                    url = input.favoriteModel.url
+                )
+            )
+        )
     }
 }
