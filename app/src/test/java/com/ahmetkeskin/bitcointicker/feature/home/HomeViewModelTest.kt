@@ -1,5 +1,6 @@
 package com.ahmetkeskin.bitcointicker.feature.home
 
+import com.ahmetkeskin.bitcointicker.base.common.domain.firebase.MergeFavoriteFBAndDB
 import com.ahmetkeskin.bitcointicker.feature.home.domain.GetCryptos
 import com.ahmetkeskin.bitcointicker.feature.home.presentation.HomeViewModel
 import org.junit.Before
@@ -16,13 +17,16 @@ class HomeViewModelTest {
     @Mock
     lateinit var getCryptos: GetCryptos
 
+    @Mock
+    lateinit var mergeFavoriteFBAndDB: MergeFavoriteFBAndDB
+
     @InjectMocks
     lateinit var homeViewModel: HomeViewModel
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        homeViewModel = HomeViewModel(getCryptos)
+        homeViewModel = HomeViewModel(getCryptos, mergeFavoriteFBAndDB)
     }
 
     @Test
