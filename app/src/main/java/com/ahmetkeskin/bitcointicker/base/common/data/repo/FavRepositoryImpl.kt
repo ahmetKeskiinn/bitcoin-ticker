@@ -13,5 +13,7 @@ class FavRepositoryImpl @Inject constructor(private val favDao: FavoriteDao) : F
     override suspend fun deleteFavorite(model: FavoriteModel) = favDao.deleteFavorite(model)
 
     override suspend fun checkFav(name: String) = favDao.checkDatabase(name)
+    override suspend fun dropDB() = favDao.dropDB()
+
     override suspend fun searchFav(name: String) = favDao.searchFavorite(name)
 }

@@ -8,6 +8,7 @@ import com.ahmetkeskin.bitcointicker.base.common.data.db.FavoriteModel
 import com.ahmetkeskin.bitcointicker.base.common.domain.room.AddFavoriteOnDB
 import com.ahmetkeskin.bitcointicker.base.extensions.FAVORITE_CURRENCY
 import com.ahmetkeskin.bitcointicker.base.extensions.FAVORITE_CURRENCY_RATE
+import com.ahmetkeskin.bitcointicker.base.extensions.URL
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
@@ -34,7 +35,8 @@ class AddFavoriteOnFB @Inject constructor(
                         fireStore.collection(user.uid).add(
                             hashMapOf<String, Any>(
                                 FAVORITE_CURRENCY to params.favoriteModel.favCoinName,
-                                FAVORITE_CURRENCY_RATE to params.favoriteModel.favCoinRate
+                                FAVORITE_CURRENCY_RATE to params.favoriteModel.favCoinRate,
+                                URL to params.favoriteModel.url
                             )
                         ).addOnSuccessListener { success ->
                             addToDB(viewModel, success.id, input)

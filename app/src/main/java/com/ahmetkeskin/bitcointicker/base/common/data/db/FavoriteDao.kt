@@ -23,4 +23,7 @@ interface FavoriteDao {
 
     @Delete
     suspend fun deleteFavorite(fav: FavoriteModel)
+
+    @Query("DELETE FROM fav_db")
+    suspend fun dropDB()
 }

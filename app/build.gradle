@@ -22,7 +22,7 @@ android {
         versionName "1.0"
 
         buildConfigField "String", "BASE_URL", '"https://rest.coinapi.io/"'
-        buildConfigField "String", "API_KEY", '"1F08F06C-073D-4348-A243-4FC0B9E72C50"'
+        buildConfigField "String", "API_KEY", '"917364F0-CDCE-4396-AAE4-BAF0DA7FF279"'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

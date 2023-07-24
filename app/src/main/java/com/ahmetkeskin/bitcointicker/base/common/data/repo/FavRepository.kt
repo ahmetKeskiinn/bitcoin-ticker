@@ -12,5 +12,7 @@ interface FavRepository {
 
     suspend fun checkFav(name: String): List<FavoriteModel>
 
+    suspend fun dropDB()
+
     suspend fun searchFav(name: String): List<FavoriteModel>
 }
