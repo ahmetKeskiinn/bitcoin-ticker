@@ -42,6 +42,7 @@ class FavoriteViewModelTest {
     @Test
     fun authenticationTest() {
         // GIVEN
+        
         // WHEN
         favoriteViewModel.searchCurrency("test")
         // THEN

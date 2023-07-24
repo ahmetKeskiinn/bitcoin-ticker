@@ -78,5 +78,4 @@ class DetailViewModelTest {
         // THEN
         Mockito.verify(checkFavoriteOnDB).execute(detailViewModel, data)
     }
-
 }

@@ -34,5 +34,4 @@ class HistoryViewModelTest {
         // THEN
         Mockito.verify(getHistory).execute(historyViewModel, data)
     }
-
 }

@@ -3,22 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="6dp"
+    android:layout_margin="@dimen/margin_xsmall"
     android:background="@null"
-    android:padding="16dp"
-    app:cardCornerRadius="4dp">
+    android:padding="@dimen/padding_large"
+    app:cardCornerRadius="@dimen/margin_xxsmall">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="6dp"
+        android:padding="@dimen/padding_xsmall"
         android:background="@drawable/bg_item_price_for_other">
 
         <ImageView
             android:id="@+id/currentImage"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="@dimen/item_medium_width"
+            android:layout_height="@dimen/item_medium_height"
+            android:layout_marginStart="@dimen/margin_xxmedium"
             app:layout_constraintBottom_toBottomOf="@id/currentCurrencyOne"
             app:layout_constraintStart_toEndOf="@id/currentCurrencyOne"
             app:layout_constraintTop_toTopOf="@id/currentCurrencyOne" />
@@ -29,9 +29,9 @@
             android:layout_height="wrap_content"
             android:text="1"
             android:textColor="@color/white"
-            android:textSize="14sp"
+            android:textSize="@dimen/small_text_size"
             android:textStyle="bold"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="@dimen/margin_xhuge"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,10 +39,10 @@
             android:id="@+id/equals"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="@dimen/margin_huge"
             android:text="="
             android:textColor="@color/white"
-            android:textSize="14sp"
+            android:textSize="@dimen/small_text_size"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/currentCurrencyOne"
             app:layout_constraintStart_toEndOf="@id/currentImage"
@@ -52,7 +52,7 @@
             android:id="@+id/otherPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="@dimen/margin_huge"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@id/currentCurrencyOne"
             app:layout_constraintStart_toEndOf="@id/equals"

@@ -1,3 +1,66 @@
 <resources>
-    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="margin_none">0dp</dimen>
+    <dimen name="margin_xxxsmall">2dp</dimen>
+    <dimen name="margin_xxsmall">4dp</dimen>
+    <dimen name="margin_xsmall">6dp</dimen>
+    <dimen name="margin_medium">8dp</dimen>
+    <dimen name="margin_xmedium">10dp</dimen>
+    <dimen name="margin_xxmedium">12dp</dimen>
+    <dimen name="margin_xxxmedium">14dp</dimen>
+    <dimen name="margin_large">16dp</dimen>
+    <dimen name="margin_xlarge">18dp</dimen>
+    <dimen name="margin_xxlarge">20dp</dimen>
+    <dimen name="margin_xxxlarge">22dp</dimen>
+    <dimen name="margin_xslarge">24dp</dimen>
+    <dimen name="margin_huge">30dp</dimen>
+    <dimen name="margin_xhuge">40dp</dimen>
+    <dimen name="margin_xshuge">42dp</dimen>
+    <dimen name="margin_xxhuge">44dp</dimen>
+    <dimen name="margin_xxxhuge">60dp</dimen>
+
+    <dimen name="padding_none">0dp</dimen>
+    <dimen name="padding_xxxsmall">2dp</dimen>
+    <dimen name="padding_xxsmall">4dp</dimen>
+    <dimen name="padding_xsmall">6dp</dimen>
+    <dimen name="padding_medium">8dp</dimen>
+    <dimen name="padding_xmedium">10dp</dimen>
+    <dimen name="padding_xxmedium">12dp</dimen>
+    <dimen name="padding_xxxmedium">14dp</dimen>
+    <dimen name="padding_large">16dp</dimen>
+    <dimen name="padding_xlarge">18dp</dimen>
+    <dimen name="padding_xxlarge">20dp</dimen>
+    <dimen name="padding_xxxlarge">22dp</dimen>
+    <dimen name="padding_huge">30dp</dimen>
+
+    <dimen name="width_height_none">0dp</dimen>
+    <dimen name="crash_lottie_height">100dp</dimen>
+
+    <dimen name="progress_width">100dp</dimen>
+    <dimen name="progress_height">100dp</dimen>
+
+    <dimen name="detail_width_image">30dp</dimen>
+    <dimen name="detail_height_image">30dp</dimen>
+    <dimen name="detail_currency_width">80dp</dimen>
+    <dimen name="detail_currency_height">80dp</dimen>
+
+    <dimen name="history_width">80dp</dimen>
+    <dimen name="history_height">80dp</dimen>
+
+    <dimen name="login_logo_height_width">100dp</dimen>
+    <dimen name="login_divider_width">120dp</dimen>
+    <dimen name="login_divider_height">2dp</dimen>
+
+    <dimen name="item_width">40dp</dimen>
+    <dimen name="item_height">40dp</dimen>
+    <dimen name="item_medium_width">20dp</dimen>
+    <dimen name="item_medium_height">20dp</dimen>
+
+    <dimen name="xsmall_text_size">12sp</dimen>
+    <dimen name="small_text_size">14sp</dimen>
+    <dimen name="xmedium_text_size">16sp</dimen>
+    <dimen name="medium_text_size">18sp</dimen>
+    <dimen name="large_text_size"></dimen>
+    <dimen name="huge_text_size">24sp</dimen>
+    <dimen name="xhuge_text_size"></dimen>
+    <dimen name="xxhuge_text_size"></dimen>
 </resources>
