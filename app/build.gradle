@@ -94,4 +94,7 @@ dependencies {
 
     // Custom Crash
     implementation 'cat.ereza:customactivityoncrash:2.4.0'
+
+    testImplementation 'org.mockito:mockito-core:5.4.0'
+    testImplementation "org.mockito:mockito-inline:4.0.0"
 }
