@@ -134,6 +134,7 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding, HistoryViewModel>(
             getString(R.string.period_five_sec),
             getString(R.string.period_six_sec),
             getString(R.string.period_ten_sec),
+            getString(R.string.period_fifteen_sec),
             getString(R.string.period_twenty_sec),
             getString(R.string.period_thirty_sec),
             getString(R.string.period_one_min),
