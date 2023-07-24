@@ -42,8 +42,8 @@ class FavoriteViewModelTest {
     @Test
     fun authenticationTest() {
         // GIVEN
-        
-        // WHEN
+
+// WHEN
         favoriteViewModel.searchCurrency("test")
         // THEN
         Mockito.verify(getSearchedFavorite).execute(favoriteViewModel, GetSearchedFavorite.Params("test"))
